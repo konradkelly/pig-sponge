@@ -26,8 +26,25 @@ public class Pig {
 
     // Implement your solution here!
     public static String pigLatin(String sentence) {
-        return null;
-    }
+        char[] arr = sentence.toCharArray();
+        System.out.println(arr);
+//        int counter = 0;
+        
+        for (int i = 0; i < arr.length; i++) {
+                String body = "";
+                char firstChar = '\0';
+                String shiftedStr = "";
+            if (arr[0] != 'a' || arr[0] != 'e' || arr[0] != 'i' || arr[0] != 'o' || arr[0] != 'u') {
+                body = sentence.substring(1);
+                firstChar = sentence.charAt(0);
+                shiftedStr = body + firstChar + "ay";
+                return shiftedStr;
+            } else {
+                return sentence;
+            }
+        }
+    return sentence;          
+}
 
 
 

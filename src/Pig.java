@@ -26,25 +26,36 @@ public class Pig {
 
     // Implement your solution here!
     public static String pigLatin(String sentence) {
-        char[] arr = sentence.toCharArray();
-        System.out.println(arr);
-//        int counter = 0;
+        String[] words = sentence.split(" ");
+        String res = "";
         
-        for (int i = 0; i < arr.length; i++) {
-                String body = "";
-                char firstChar = '\0';
-                String shiftedStr = "";
-            if (arr[0] != 'a' || arr[0] != 'e' || arr[0] != 'i' || arr[0] != 'o' || arr[0] != 'u') {
-                body = sentence.substring(1);
-                firstChar = sentence.charAt(0);
-                shiftedStr = body + firstChar + "ay";
-                return shiftedStr;
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            char firstChar = word.charAt(0);
+            if (hasAEIOU(firstChar)) {
+                // Add vowels as usual
+                res += word;
             } else {
-                return sentence;
+                // Must rearrange in accordance with the rule
+                // Note: Java's built-in substring method slices off what is to the left of the selected index while keeping everything else
+                res += word.substring(1) + firstChar + "ay";
+            }
+
+            //Add space up until the second to last character in words (use of -1 is critical here)
+            if (i < words.length - 1) {
+                res += " ";
             }
         }
-    return sentence;          
-}
+        return res;
+    }
+
+    public static boolean hasAEIOU(char ch) {
+        if (ch =='a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+            return true;
+        }
+        return false;
+    }
+
 
 
 
